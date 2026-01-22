@@ -1,4 +1,9 @@
-## EX7 - python connect-N ##
+# **************************************************************#
+# * Exercise: EX7 - python connect-N
+# * Author: Guy Kejzman
+# * ID: kejzmag
+# **************************************************************#
+
 import sys
 
 EMPTY = "."
@@ -8,6 +13,12 @@ TOKEN_P2 = "O"
 HUMAN = "h"
 COMPUTER = "c"
 
+CONNECT_N_FOR_2 = 2
+CONNECT_N_FOR_4_TO_5 = 3
+CONNECT_N_FOR_6_TO_10 = 4
+CONNECT_N_FOR_11_PLUS = 5
+MAX_FOR_4_TO_5 = 5
+MAX_FOR_6_TO_10 = 10
 
 def read_int_in_range(prompt: str, lo: int, hi: int) -> int:
     while True:
@@ -26,12 +37,12 @@ def read_int_in_range(prompt: str, lo: int, hi: int) -> int:
 def choose_connect_n(rows: int, cols: int) -> int:
     m = max(rows, cols)
     if m == 2:
-        return 2
+        return CONNECT_N_FOR_2
     if 4 <= m <= 5:
-        return 3
+        return CONNECT_N_FOR_4_TO_5
     if 6 <= m <= 10:
-        return 4
-    return 5  # 11 and above
+        return CONNECT_N_FOR_6_TO_10
+    return CONNECT_N_FOR_11_PLUS  # 11 and above
 
 
 def get_player_type(player_number: int) -> str:
@@ -335,10 +346,6 @@ def play_tic_tac_toe() -> None:
     winner = 0
     moves = 0
 
-    # Cells numbered:
-    # |1|2|3|
-    # |4|5|6|
-    # |7|8|9|
     while not winner and moves < 9:
         token = TOKEN_P1 if current == 1 else TOKEN_P2
         print(f"Player {current} ({token}) turn.")
